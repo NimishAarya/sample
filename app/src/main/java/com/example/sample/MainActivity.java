@@ -22,8 +22,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn_sl=findViewById(R.id.btn_signup_login);
-        ParseUser.getCurrentUser().logOut();
-        ParseInstallation.getCurrentInstallation().saveInBackground();
+        if(ParseUser.getCurrentUser() != null){
+            ParseUser.getCurrentUser().logOut();
+        }
+         ParseInstallation.getCurrentInstallation().saveInBackground();
 
         btn_sl.setOnClickListener(new View.OnClickListener() {
             @Override
