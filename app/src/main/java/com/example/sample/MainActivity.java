@@ -22,14 +22,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn_sl=findViewById(R.id.btn_signup_login);
-        if(ParseUser.getCurrentUser() != null){
-            ParseUser.getCurrentUser().logOut();
-        }
+//        if(ParseUser.getCurrentUser() != null){
+//            ParseUser.getCurrentUser().logOut();
+//        }
          ParseInstallation.getCurrentInstallation().saveInBackground();
 
         btn_sl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(ParseUser.getCurrentUser() != null)
+                {
+                ParseUser.getCurrentUser().logOut();
+                }
                 Intent intent =new Intent(MainActivity.this,SignupLoginActivity.class);
                 startActivity(intent);
             }

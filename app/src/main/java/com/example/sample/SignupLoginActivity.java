@@ -34,6 +34,11 @@ public class SignupLoginActivity extends AppCompatActivity
         btnRegister = findViewById(R.id.btnRegister);
         btnLogin = findViewById(R.id.btnLogin);
 
+        if(ParseUser.getCurrentUser() != null)
+        {
+            //ParseUser.getCurrentUser().logOut();
+            transitionToWelcomeUser();
+        }
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,8 +48,8 @@ public class SignupLoginActivity extends AppCompatActivity
                 appUser.setUsername(edtUsername.getText().toString());
                 appUser.setPassword(edtPassword.getText().toString());
 
-                ProgressDialog progressdialog = new ProgressDialog(SignupLoginActivity.this);
-                progressdialog.setMessage("Signing up");
+//                ProgressDialog progressdialog = new ProgressDialog(SignupLoginActivity.this);
+//                progressdialog.setMessage("Signing up");
 
                 appUser.signUpInBackground(new SignUpCallback() {
                     @Override
@@ -54,8 +59,9 @@ public class SignupLoginActivity extends AppCompatActivity
                             edtUsername.setText("");
                             edtPassword.setText("");
                             Toast.makeText(SignupLoginActivity.this,appUser.get("username")+" is signed up successfully",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignupLoginActivity.this,WelcomeUser.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(SignupLoginActivity.this,WelcomeUser.class);
+//                            startActivity(intent);
+                            transitionToWelcomeUser();
 
                         }
                         else
@@ -73,8 +79,8 @@ public class SignupLoginActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                ProgressDialog progressdialog1 = new ProgressDialog(SignupLoginActivity.this);
-                progressdialog1.setMessage("Logging in");
+//                ProgressDialog progressdialog1 = new ProgressDialog(SignupLoginActivity.this);
+//                progressdialog1.setMessage("Logging in");
 
                 ParseUser.logInInBackground(edtUsernameLogin.getText().toString(), edtPasswordLogin.getText().toString(), new LogInCallback() {
                     @Override
@@ -84,8 +90,9 @@ public class SignupLoginActivity extends AppCompatActivity
                             edtPasswordLogin.setText("");
                             edtUsernameLogin.setText("");
                             Toast.makeText(SignupLoginActivity.this,user.get("username")+" is successfully logged in",Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(SignupLoginActivity.this,WelcomeUser.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(SignupLoginActivity.this,WelcomeUser.class);
+//                            startActivity(intent);
+                            transitionToWelcomeUser();
 
                         }
                         else
@@ -96,5 +103,15 @@ public class SignupLoginActivity extends AppCompatActivity
             }
         });
 
+
+
+
+
     }
+
+    private void transitionToWelcomeUser() {
+        Intent intent =new Intent(SignupLoginActivity.this,WelcomeUser.class);
+        startActivity(intent);
+    }
+
 }
