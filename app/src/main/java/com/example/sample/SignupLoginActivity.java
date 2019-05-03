@@ -34,11 +34,11 @@ public class SignupLoginActivity extends AppCompatActivity
         btnRegister = findViewById(R.id.btnRegister);
         btnLogin = findViewById(R.id.btnLogin);
 
-        if(ParseUser.getCurrentUser() != null)
-        {
-            //ParseUser.getCurrentUser().logOut();
-            transitionToWelcomeUser();
-        }
+//        if(ParseUser.getCurrentUser() != null)
+//        {
+//            //ParseUser.getCurrentUser().logOut();
+//            transitionToWelcomeUser();
+//        }
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
